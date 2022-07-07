@@ -26,6 +26,21 @@ const List = ({ setQuery, jobData, setCoordinates }) => {
 
   const onLoad = (autoC) => setAutoComplete(autoC);
 
+  const onPlaceChanged = () => {
+    const lat = autocomplete.getPlace().geometry.location.lat(); // googlemap recommendation
+    const lng = autocomplete.getPlace().geometry.location.lng();
+    setCoordinates({ lat, lng });
+    let place = autocomplete.getPlace();
+    let inputValue = place.formatted_address;
+
+    //try to establish query inside onPLaceChange
+    let query = `${searchForm.job} in ${inputValue} ${remoteValue} ${employmentTypeValue}`;
+
+    setQuery(query);
+    
+    console.log(inputValue);
+  };
+
   const [searchForm, setSearchForm] = useState({
     job: "",
     location: "",
@@ -54,17 +69,10 @@ const List = ({ setQuery, jobData, setCoordinates }) => {
     employmentTypeValue = "";
   }
 
-  console.log(searchForm.location)
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    let query = `${searchForm.job} in ${searchForm.location} ${remoteValue} ${employmentTypeValue}`;
-    console.log(query);
-    setQuery(query);
-     const lat = autocomplete.getPlace().geometry.location.lat(); // googlemap recommendation
-     const lng = autocomplete.getPlace().geometry.location.lng();
-     setCoordinates({ lat, lng });
-     console.log(lat, lng);
+
+    onPlaceChanged();
   };
 
   return (
