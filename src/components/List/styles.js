@@ -1,12 +1,8 @@
-import {  makeStyles, alpha } from "@material-ui/core";
+import {  alpha, makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
   container: {
     marginTop: "5rem",
-  },
-  inputForm: {
-    display: "flex",
-    flexDirection: "column",
   },
 
   inputInput: {
@@ -22,11 +18,42 @@ export default makeStyles((theme) => ({
   },
   locationIcon: {
     position: " absolute",
-    transform: "translate(1rem, 5.75rem)",
+    transform: "translate(1rem, 1.25rem)",
   },
   submitButton: {
     backgroundColor: "#fa7436",
-      "&:hover": { backgroundColor: "#fc824a" },
-    color: "#ffffff"
+    "&:hover": { backgroundColor: "#fc824a" },
+    color: "#ffffff",
+    marginTop: "1.5rem"
   },
+  list: {
+    marginTop: "2rem",
+    height: "50vh",
+    overflow: "auto",
+  },
+
+  inputInput: {
+    width: "100%",
+    border: "1px solid #b5b5b5",
+    borderRadius: "10px",
+    textIndent: "5rem",
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    margin: "0.5rem 0",
+  },
+
+  selectOption: {
+    width: " 10vw",
+    marginTop: "0.25rem"
+  },
+
+  label: {
+    marginTop: "0.5rem",
+    color: "black"
+   
+  },
+  remoteMargin: {
+    marginRight: "2rem"
+  }
+
 }));
