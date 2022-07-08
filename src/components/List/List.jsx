@@ -1,5 +1,4 @@
 import {
-  Typography,
   Button,
   Box,
   Grid,
@@ -7,7 +6,7 @@ import {
   MenuItem,
   InputLabel,
   InputBase,
-  Input,
+  CircularProgress,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import useStyles from "./styles";
@@ -16,7 +15,7 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { JobDetails } from "../JobDetails/JobDetails";
 import { Autocomplete } from "@react-google-maps/api";
 
-const List = ({ setQuery, jobData, setCoordinates }) => {
+const List = ({ setQuery, jobData, setCoordinates, isLoading }) => {
   const classes = useStyles();
 
   const [isRemote, setIsRemote] = useState("all");
@@ -37,7 +36,8 @@ const List = ({ setQuery, jobData, setCoordinates }) => {
     let query = `${searchForm.job} in ${inputValue} ${remoteValue} ${employmentTypeValue}`;
 
     setQuery(query);
-    
+    //change searchForm.location to google suggestion
+    searchForm.location = inputValue;
     console.log(inputValue);
   };
 
@@ -76,80 +76,89 @@ const List = ({ setQuery, jobData, setCoordinates }) => {
   };
 
   return (
-    <div className={classes.container}>
-      <form className={classes.formControl} onSubmit={handleSubmit}>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+    <>
+      <div className={classes.container}>
+        <form className={classes.formControl} onSubmit={handleSubmit}>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search jobs…"
+              value={searchForm.job}
+              onChange={handleChange}
+              name="job"
+              className={classes.inputInput}
+            />
           </div>
-          <InputBase
-            placeholder="Search jobs…"
-            value={searchForm.job}
-            onChange={handleChange}
-            name="job"
-            className={classes.inputInput}
-          />
-        </div>
-
-        <LocationOnOutlinedIcon className={classes.locationIcon} />
-
-        <Autocomplete onLoad={onLoad} onPlaceChanged={handleSubmit}>
-          <InputBase
-            placeholder="Location"
-            value={searchForm.location}
-            onChange={handleChange}
-            name="location"
-            className={classes.inputInput}
-          />
-        </Autocomplete>
-
-        <Box display="flex">
-          <div className={classes.remoteMargin}>
-            <InputLabel className={classes.label}>Remote</InputLabel>
-            <Select
-              value={isRemote}
-              onChange={(e) => setIsRemote(e.target.value)}
-              className={classes.selectOption}
-            >
-              <MenuItem value="all">All</MenuItem>
-              <MenuItem value="yes">Yes</MenuItem>
-              <MenuItem value="no">No</MenuItem>
-            </Select>
-          </div>
-          <div>
-            <InputLabel className={classes.label}>Employment Type</InputLabel>
-            <Select
-              value={employmentType}
-              onChange={(e) => setEmploymentType(e.target.value)}
-              className={classes.selectOption}
-            >
-              <MenuItem value="all">All</MenuItem>
-              <MenuItem value="fullTime">Full-time</MenuItem>
-              <MenuItem value="partTime">Part-time</MenuItem>
-            </Select>
-          </div>
-        </Box>
-        <Button
-          variant="contained"
-          size="large"
-          type="submit"
-          className={classes.submitButton}
-        >
-          Search
-        </Button>
-      </form>
-
-      <Grid container spacing={3} className={classes.list}>
-        {jobData.map((eachJobData) => (
-          <JobDetails
-            eachJobData={eachJobData}
-            key={eachJobData.job_id}
-            latitude={eachJobData.job_latitude}
-            longitude={eachJobData.job_longitude}
-          />
-        ))}
-      </Grid>
-    </div>
+          <LocationOnOutlinedIcon className={classes.locationIcon} />
+          <Autocomplete onLoad={onLoad} onPlaceChanged={handleSubmit}>
+            <InputBase
+              placeholder="Location"
+              value={searchForm.location}
+              onChange={handleChange}
+              name="location"
+              className={classes.inputInput}
+            />
+          </Autocomplete>
+          <Box display="flex">
+            <div className={classes.remoteMargin}>
+              <InputLabel className={classes.label}>Remote</InputLabel>
+              <Select
+                value={isRemote}
+                onChange={(e) => setIsRemote(e.target.value)}
+                className={classes.selectOption}
+              >
+                <MenuItem value="all">All</MenuItem>
+                <MenuItem value="yes">Yes</MenuItem>
+                <MenuItem value="no">No</MenuItem>
+              </Select>
+            </div>
+            <div>
+              <InputLabel className={classes.label}>Employment Type</InputLabel>
+              <Select
+                value={employmentType}
+                onChange={(e) => setEmploymentType(e.target.value)}
+                className={classes.selectOption}
+              >
+                <MenuItem value="all">All</MenuItem>
+                <MenuItem value="fullTime">Full-time</MenuItem>
+                <MenuItem value="partTime">Part-time</MenuItem>
+              </Select>
+            </div>
+          </Box>
+          <Button
+            variant="contained"
+            size="large"
+            type="submit"
+            className={classes.submitButton}
+          >
+            Search
+          </Button>
+        </form>
+        {isLoading ? (
+          <Box
+            display="flex"
+            className={classes.loading}
+            alignItems="center"
+            justifyContent= "center"
+          >
+            <CircularProgress size="7rem" />
+          </Box>
+        ) : (
+          <Grid container spacing={3} className={classes.list}>
+            {jobData.map((eachJobData) => (
+              <JobDetails
+                eachJobData={eachJobData}
+                key={eachJobData.job_id}
+                latitude={eachJobData.job_latitude}
+                longitude={eachJobData.job_longitude}
+              />
+            ))}
+          </Grid>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import {  alpha, makeStyles } from "@material-ui/core";
+import {  makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
   container: {
@@ -6,10 +6,15 @@ export default makeStyles((theme) => ({
   },
 
   inputInput: {
-    margin: "0.5rem 0px 0.5rem 0",
     "&:focus": { paddingLeft: "50px" },
     textIndent: "2rem",
     position: "relative",
+    width: "100%",
+    border: "1px solid #b5b5b5",
+    borderRadius: "10px",
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    margin: "0.5rem 0",
   },
 
   searchIcon: {
@@ -24,7 +29,7 @@ export default makeStyles((theme) => ({
     backgroundColor: "#fa7436",
     "&:hover": { backgroundColor: "#fc824a" },
     color: "#ffffff",
-    marginTop: "1.5rem"
+    marginTop: "1.5rem",
   },
   list: {
     marginTop: "2rem",
@@ -32,28 +37,21 @@ export default makeStyles((theme) => ({
     overflow: "auto",
   },
 
-  inputInput: {
-    width: "100%",
-    border: "1px solid #b5b5b5",
-    borderRadius: "10px",
-    textIndent: "5rem",
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    margin: "0.5rem 0",
-  },
 
   selectOption: {
     width: " 10vw",
-    marginTop: "0.25rem"
+    marginTop: "0.25rem",
   },
 
   label: {
     marginTop: "0.5rem",
-    color: "black"
-   
+    color: "black",
   },
   remoteMargin: {
-    marginRight: "2rem"
-  }
-
+    marginRight: "2rem",
+  },
+  loading: {
+    height: "600px",
+    width: "100%",
+  },
 }));

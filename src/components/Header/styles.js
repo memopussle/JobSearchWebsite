@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
       display: "none",
     },
   },
-  
+
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: "100%",
@@ -31,7 +31,6 @@ export default makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-
 
   toolbar: {
     display: "flex",
