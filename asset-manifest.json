@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/memopussle/JobSearchWebsite/static/js/main.818245bf.js",
+    "index.html": "/memopussle/JobSearchWebsite/index.html",
+    "main.818245bf.js.map": "/memopussle/JobSearchWebsite/static/js/main.818245bf.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.818245bf.js"
+  ]
+}
