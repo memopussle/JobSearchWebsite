@@ -29,7 +29,7 @@ console.log(isLoading);
   //convert user's lat and lng -> city
   //get job generates based on user's location
   useEffect(() => {
-    Geocode.setApiKey("AIzaSyB6uGiBEvqJdpWzjhvGlLXMUWjWvs5gwoU");
+    Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
     Geocode.setLanguage("en");
     Geocode.setLocationType("ROOFTOP");
     Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
