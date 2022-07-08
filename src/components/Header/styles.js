@@ -1,4 +1,4 @@
-import { alpha, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 
 //theme.breakpoints.up("sm") :sm and up breakpoint

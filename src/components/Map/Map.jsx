@@ -25,7 +25,7 @@ const Map = ({ setCoordinates, coordinates}) => {
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
         }}
       >
-        <LocationOnOutlined fontSize="large" />
+        <LocationOnOutlined fontSize="10rem" />
       </GoogleMapReact>
     </div>
   );

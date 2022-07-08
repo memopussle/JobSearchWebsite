@@ -6,7 +6,6 @@ import {
   Toolbar,
   Typography,
   Box,
-  InputBase,
 
   Container,
 } from "@material-ui/core";
@@ -16,7 +15,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 
  const Header = () => {
   const classes = useStyles();
-   const [autocomplete, setAutoComplete] = useState(null);
 
 
   return (
